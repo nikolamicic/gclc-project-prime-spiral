@@ -1,0 +1,170 @@
+procedure make_circle {A duzina}{
+    getx Ax A
+    gety Ay A
+    
+    expression Ay {Ay+duzina}
+    point Anew Ax Ay
+    circle c1 A Anew
+    
+    number c_R 0
+    number c_G 255 
+    number c_B 128
+    color c_R c_G c_B
+    
+    fillcircle c1
+    
+    }
+    
+    procedure make_square {A duzina}{
+    getx Ax A
+    gety Ay A
+    
+    expression Anewx {Ax-duzina}
+    expression Anewy {Ay-duzina}
+    
+    expression Bnewx {Ax+duzina}
+    expression Bnewy {Ay+duzina}
+    
+    point Anew Anewx Anewy
+    point Bnew Bnewx Bnewy
+    
+    circle c1 A Anew
+    
+    number c_R 255
+    number c_G 255 
+    number c_B 102
+    color c_R c_G c_B
+    
+    fillrectangle Anew Bnew
+    
+    }
+    
+    procedure make_triangle {A duzina}{
+    getx Ax A
+    gety Ay A
+    
+    expression Anewx {Ax-duzina}
+    expression Anewy {Ay-duzina}
+    
+    expression Bnewx {Ax+duzina}
+    expression Bnewy {Ay-duzina}
+    
+    expression Cnewx {Ax+0}
+    expression Cnewy {Ay+duzina}
+    
+    point Anew Anewx Anewy
+    point Bnew Bnewx Bnewy
+    point Cnew Cnewx Cnewy
+    
+    number c_R 255
+    number c_G 153 
+    number c_B 153
+    color c_R c_G c_B
+    
+    filltriangle Anew Bnew Cnew
+    
+    }
+    
+    procedure make_ellipse {A duzina sirina}{
+    getx Ax A
+    gety Ay A
+    
+    number c_R 17
+    number c_G 250 
+    number c_B 211
+    color c_R c_G c_B
+    
+    fillellipse A duzina sirina
+    
+    }
+    
+    
+    point P 0 0 20 20
+    getx p P
+    
+    %Picture parameters 
+    dim 590 590
+    number bg_R 0
+    number bg_G 51
+    number bg_B 102
+    background bg_R bg_G bg_B
+    %
+    
+    point O 0 0
+    point A 295 295
+    point B 310 295
+    
+    number i 0
+    
+    number duz 15
+    number duzina_geom_fig 6
+    number duzina_elipse 6
+    number sirina_elipse 3
+    
+    number line_R 204
+    number line_G 255
+    number line_B 229
+    
+    number n 10000
+    
+    number n_procceed_frame 1
+    number nivo 0
+    
+    while {i < n}{
+    if_then_else {p > n_procceed_frame} {
+        if_then_else {nivo < 1}{
+    
+            call make_circle {A duzina_geom_fig}
+            color line_R line_G line_B
+            drawsegment A B
+                
+            call make_square {B duzina_geom_fig}
+            color line_R line_G line_B
+    
+            rotate A B 90  A
+            drawsegment B A
+    
+            rotate B A 90 B
+    
+            getx b1x B
+            gety b1y B
+    
+            expression b1x {b1x-duz}
+    
+            point B b1x b1y
+    
+            call make_triangle {A duzina_geom_fig}
+            color line_R line_G line_B	
+            drawsegment A B
+    
+            rotate A B 90 A
+                
+            call make_ellipse {B duzina_elipse sirina_elipse}
+    
+            color line_R line_G line_B
+            drawsegment B A
+    
+            rotate B A 90 B	
+            getx b1x B
+            gety b1y B
+    
+            expression b1x {b1x+duz}
+    
+            point B b1x b1y
+    
+            drawsegment A B
+    
+            expression nivo {nivo + 1}
+        }{	
+            expression nivo {nivo - 1}
+            expression n_procceed_frame {n_procceed_frame + 1}
+        }
+        
+    }   
+    {}
+    expression i {i + 1}
+    
+    }
+    
+    
+    animation_frames 20 4

@@ -79,11 +79,11 @@ fillellipse A duzina sirina
 }
 
 
-point P 0 0 98 98
+point P 0 0 72 72
 getx p P
 
 %Picture parameters 
-dim 600 600
+dim 150 150
 number bg_R 0
 number bg_G 51
 number bg_B 102
@@ -91,15 +91,15 @@ background bg_R bg_G bg_B
 %
 
 point O 0 0
-point A 295 300
-point B 310 300
+point A 75 75
+point B 80 75
 
 number i 0
 
-number duz 15
-number duzina_geom_fig 6
-number duzina_elipse 6
-number sirina_elipse 3
+number duz 5
+number duzina_geom_fig 2
+number duzina_elipse 2
+number sirina_elipse 1
 
 number line_R 204
 number line_G 255
@@ -185,4 +185,4 @@ expression i {i + 1}
 }
 
 
-animation_frames 98 50
+animation_frames 60 5
